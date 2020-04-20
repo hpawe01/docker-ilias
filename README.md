@@ -1,5 +1,9 @@
 # Configured docker image for ILIAS 5.4.10
 
+## Requirements
+
+Download file `https://github.com/ILIAS-eLearning/ILIAS/archive/v5.4.10.tar.gz` into project root (at the moment needed to build the docker image).
+
 ## Usage
 
 `docker-compose up -d`
