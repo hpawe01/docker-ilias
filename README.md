@@ -6,9 +6,9 @@ Download file `https://github.com/ILIAS-eLearning/ILIAS/archive/v5.4.10.tar.gz` 
 
 ## Usage
 
-`docker-compose up -d`
-Go to `localhost:8001`
-Login in with `root` and `secret`
+1. `docker-compose up -d`
+2. Go to `localhost:8001`
+3. Login in with `root` and `secret`
 
 Master Password: `secret`
 
@@ -24,7 +24,7 @@ Master Password: `secret`
 `docker-compose build --no-cache`
 
 ### Create new startup_db
-`docker exec -it ilias_db_1 mysqldump -u ilias -psecret ilias -r startup_db.sql`
-`docker cp ilias_db_1:startup_db.sql ./`
+1. `docker exec -it ilias_db_1 mysqldump -u ilias -psecret ilias -r startup_db.sql`
+2. `docker cp ilias_db_1:startup_db.sql ./`
 
 See https://stackoverflow.com/a/20086949/5816097 on why we cannot use `... > startup_db.sql`.
