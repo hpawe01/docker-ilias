@@ -6,6 +6,9 @@ services:
             - "8001:80"
         depends_on:
             - db
+        volumes:
+            - ./plugins/ExternalContent:/var/www/html/ilias/Customizing/global/plugins/Services/Repository/RepositoryObject/ExternalContent
+            - ./config/customizing/page.xsl:/var/www/html/ilias/Services/COPage/xsl/page.xsl
     db:
         image: mysql:5.7
         command: --default-authentication-plugin=mysql_native_password
