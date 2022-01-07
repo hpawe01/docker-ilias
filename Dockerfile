@@ -7,22 +7,29 @@ RUN apt-get update \
     libpng-dev \
     libxml2-dev \
     libxslt-dev \
+    zlib1g-dev \
+    libzip-dev \
   && docker-php-ext-install \
     mysqli \
     pdo_mysql \
     gd \
     xml \
     mbstring \
-    xsl
+    dom \
+    soap \
+    xml \
+    xsl \
+    zip
+COPY --from=composer:1 /usr/bin/composer /usr/local/bin/composer
 
 WORKDIR /var/www/html
 USER www-data
-COPY ILIAS-5.4.10.tar.gz /var/www/html
-# RUN wget -c https://github.com/ILIAS-eLearning/ILIAS/archive/v5.4.10.tar.gz -O - | tar -xz -C /var/www/html/ilias --strip-components=1
+COPY ILIAS-6.4.tar.gz /var/www/html
+# RUN wget -c https://github.com/ILIAS-eLearning/ILIAS/archive/v6.4.tar.gz -O - | tar -xz -C /var/www/html/ilias --strip-components=1
 RUN mkdir /var/www/html/ilias \
   && mkdir /var/www/html/files \
-  && tar -xf /var/www/html/ILIAS-5.4.10.tar.gz -C /var/www/html/ilias --strip-components=1 \
-  && rm /var/www/html/ILIAS-5.4.10.tar.gz \
+  && tar -xf /var/www/html/ILIAS-6.4.tar.gz -C /var/www/html/ilias --strip-components=1 \
+  && rm /var/www/html/ILIAS-6.4.tar.gz \
   && mkdir -p /var/www/html/ilias/data/ilias/css \
   && mkdir /var/www/html/ilias/data/ilias/lm_data \
   && mkdir /var/www/html/ilias/data/ilias/mobs \
@@ -42,3 +49,7 @@ RUN echo "<?php phpinfo();" > /var/www/html/ilias/info.php
 USER root
 COPY config/app/ilias_php.ini $PHP_INI_DIR/conf.d/
 COPY config/app/ilias_apache.conf /etc/apache2/sites-enabled/000-default.conf
+
+WORKDIR /var/www/html/ilias
+RUN composer update --no-dev
+RUN chown -R www-data:www-data modules ilias.ini.php data/ilias/client.ini.php
