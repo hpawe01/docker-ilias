@@ -4,6 +4,9 @@
 
 Download file `https://github.com/ILIAS-eLearning/ILIAS/archive/v6.4.tar.gz` into project root (at the moment needed to build the docker image).
 
+Install plugins in plugins directory:
+- H5P: `git clone https://github.com/srsolutionsag/H5P.git H5P`
+
 ## Usage
 
 1. `docker-compose up -d`

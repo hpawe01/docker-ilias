@@ -8,6 +8,7 @@ services:
             - db
         volumes:
             - ./plugins/ExternalContent:/var/www/html/ilias/Customizing/global/plugins/Services/Repository/RepositoryObject/ExternalContent
+            - ./plugins/H5P:/var/www/html/ilias/Customizing/global/plugins/Services/Repository/RepositoryObject/H5P
             - ../miquiz-ilias:/var/www/html/ilias/Customizing/global/plugins/Services/Repository/RepositoryObject/MIQuiz
             - ./config/customizing/page.xsl:/var/www/html/ilias/Services/COPage/xsl/page.xsl
     db:
